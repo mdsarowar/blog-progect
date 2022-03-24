@@ -38,6 +38,7 @@ class Service extends Model
 
     public static function updateData($request){
         self::$service=Service::findOrFail($request->service_id);
+
         $image=$request->file('service_image');
         $filename=self::$service->service_image;
         $imageDirectory='admin/assets/servis-images/';

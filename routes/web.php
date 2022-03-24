@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Front\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,12 @@ use App\Http\Controllers\Admin\ServiceController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[PageController::class,'home'])->name('home');
+
+
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 Route::group(['middleware'=>['auth:sanctum', 'verified']],function (){
 
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');

@@ -38,10 +38,12 @@
 {{--                            @if(Session::has('message'))--}}
 {{--                                <h3 class="text-success">{{Session::get('message')}}</h3>--}}
 {{--                            @endif--}}
+                            <input type="hidden" name="service_id" value="{{$service->id}}">
+
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-3 col-form-label">Service Title</label>
                                 <div class="col-md-9">
-                                    <input class="form-control" type="text" name="service_title" value="$service->service_title"  >
+                                    <input class="form-control" type="text" name="service_title" value="{{$service->service_title}}"  >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -60,8 +62,8 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-3 col-form-label">Status</label>
                                 <div class="col-md-9">
-                                    <label for=""><input type="radio" name="status" {{$product->status==0? 'checked':''}} value="0"> Unpublished</label>
-                                    <label for=""><input type="radio" name="status" {{$product->status==1? 'checked':''}}  value="1"> Published</label>
+                                    <label for=""><input type="radio" name="status" {{$service->status==0? 'checked':''}} value="0"> Unpublished</label>
+                                    <label for=""><input type="radio" name="status" {{$service->status==1? 'checked':''}}  value="1"> Published</label>
 
                                 </div>
                             </div>

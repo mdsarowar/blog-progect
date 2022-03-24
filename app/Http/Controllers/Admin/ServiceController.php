@@ -33,7 +33,7 @@ class ServiceController extends Controller
 
     public function editService($id){
         return view('admin.service.edit',[
-            'service'=>Service::updateData($id),
+            'service'=>Service::findOrFail($id),
         ]);
     }
 
