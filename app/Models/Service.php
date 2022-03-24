@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\helper\Customhelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,46 +21,50 @@ class Service extends Model
 
     public static function saveData($request){
 
-        self::$image=$request->file('category_image');
-        self::$imageName=time().rand(10,2000).'.'.self::$image->getClientOriginalExtension();
-        self::$imageDirectory='admin/assets/service-images/';
-        self::$image->move(self::$imageDirectory,self::$imageName);
-        self::$imageUrl=self::$imageDirectory.self::$imageName;
+        $image=$request->file('service_image');
+//        self::$imageName=time().rand(10,2000).'.'.self::$image->getClientOriginalExtension();
+        $imageDirectory='admin/assets/service-images/';
+//        self::$image->move(self::$imageDirectory,self::$imageName);
+//        self::$imageUrl=self::$imageDirectory.self::$imageName;
 
         self::$service=new Service();
-        self::$service->category_name              =$request->category_name;
-        self::$service->category_image             =self::$imageUrl;
+        self::$service->service_title              =$request->service_title;
+        self::$service->service_image              =Customhelper::imageUpload($image,$imageDirectory);
+        self::$service->service_content            =$request->service_content;
         self::$service->status                     =$request->status;
         self::$service->save();
 
     }
 
     public static function updateData($request){
-        self::$service=Categori::findOrFail($request->category_id);
-        self::$image=$request->file('category_image');
+        self::$service=Service::findOrFail($request->service_id);
+        $image=$request->file('service_image');
+        $filename=self::$service->service_image;
+        $imageDirectory='admin/assets/servis-images/';
 
-        if (self::$image)
-        {
-            if (file_exists(self::$service->category_image))
-            {
-                unlink(self::$service->category_image);
-            }
-            self::$imageName=time().rand(10,2000).'.'.self::$image->getClientOriginalExtension();
-            self::$imageDirectory='admin/assets/cat-images/';
-            self::$image->move(self::$imageDirectory,self::$imageName);
-            self::$imageUrl=self::$imageDirectory.self::$imageName;
+//        if (self::$image)
+//        {
+//            if (file_exists(self::$service->category_image))
+//            {
+//                unlink(self::$service->category_image);
+//            }
+//            self::$imageName=time().rand(10,2000).'.'.self::$image->getClientOriginalExtension();
+//            self::$imageDirectory='admin/assets/cat-images/';
+//            self::$image->move(self::$imageDirectory,self::$imageName);
+//            self::$imageUrl=self::$imageDirectory.self::$imageName;
+//
+//        }
+//        else
+//        {
+//            self::$imageUrl=self::$service->category_image;
+//        }
 
-        }
-        else
-        {
-            self::$imageUrl=self::$service->category_image;
-        }
 
-
-        self::$service->category_name              =$request->category_name;
-        self::$service->category_image             =self::$imageUrl;
+        self::$service->service_title              =$request->service_title;
+        self::$service->service_image              =Customhelper::updateimage($image,$filename,$imageDirectory);
+        self::$service->service_content            =$request->service_content;
         self::$service->status                     =$request->status;
-        self::$category->save();
+        self::$service ->save();
 
     }
 

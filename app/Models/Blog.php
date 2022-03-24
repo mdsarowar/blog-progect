@@ -33,23 +33,14 @@ class Blog extends Model
 
     public static function updateData($request){
         self::$blog=Blog::findOrFail($request->blog_id);
-        self::$image=$request->file('blog_image');
-        if (self::$image)
-        {
-            if (file_exists(self::$blog->blog_image)){
-                unlink(self::$blog->blog_image);
-            }
-            self::$imageName=time().rand(10,2000).'.'.self::$image->getClientOriginalExtension();
-            self::$imageDirectory='admin/assets/blog-images/';
-            self::$image->move(self::$imageDirectory,self::$imageName);
-            self::$imageUrl=self::$imageDirectory.self::$imageName;
-        }
-        else{
-            self::$imageUrl=self::$blog->blog_image;
-        }
+        $image=$request->file('blog_image');
+        $fileimage=self::$blog->blog_image;
+        $directory='admin/assets/blog-images/';
+
+
 
         self::$blog->blog_title              =$request->blog_title;
-        self::$blog->blog_image              =self::$imageUrl;
+        self::$blog->blog_image              =Customhelper::updateimage($image,$fileimage,$directory);
         self::$blog->blog_content            =$request->blog_content;
         self::$blog->Status                  =$request->status;
         self::$blog->save();

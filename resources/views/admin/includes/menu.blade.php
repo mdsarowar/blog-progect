@@ -47,7 +47,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{route('add_service')}}">Add service</a></li>
-                        <li><a href="">Manage service</a></li>
+                        <li><a href="{{route('manage_service')}}">Manage service</a></li>
 
                     </ul>
                 </li>
