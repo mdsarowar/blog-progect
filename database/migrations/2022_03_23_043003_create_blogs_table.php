@@ -18,6 +18,7 @@ return new class extends Migration
             Schema::create('blogs', function (Blueprint $table) {
                 $table->id();
                 $table->text('blog_title');
+                $table->text('category_id');
                 $table->string('blog_image')->nullable();
                 $table->longText('blog_content');
                 $table->tinyInteger('status')->default('0')->comment('0=>unpublishde,1=>published');

@@ -23,12 +23,17 @@ class Blog extends Model
 
 
         self::$blog=new Blog();
-//        self::$blog->category_id            =$request->category_id;
+        self::$blog->category_id            =$request->category_id;
         self::$blog->blog_title              =$request->blog_title;
         self::$blog->blog_image              =Customhelper::imageUpload($request->file('blog_image'),'admin/assets/blog-images/');
         self::$blog->blog_content            =$request->blog_content;
         self::$blog->Status                  =$request->status;
         self::$blog->save();
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Categori::class);
     }
 
     public static function updateData($request){
@@ -37,8 +42,7 @@ class Blog extends Model
         $fileimage=self::$blog->blog_image;
         $directory='admin/assets/blog-images/';
 
-
-
+        self::$blog->category_id            =$request->category_id;
         self::$blog->blog_title              =$request->blog_title;
         self::$blog->blog_image              =Customhelper::updateimage($image,$fileimage,$directory);
         self::$blog->blog_content            =$request->blog_content;

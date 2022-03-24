@@ -50,6 +50,19 @@
                                     <img src="{{asset($blog->blog_image)}}" style="height: 100px;width: 100px" alt="">
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-md-3 col-form-label">Blog category Name</label>
+                                <div class="col-md-9">
+                                    <select name="category_id" class="form-control" id="">
+                                        <option value="" disabled selectde>Select Category</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{$category->id}}"{{$category->category_id==$blog->category_id? 'selected':''}}>{{$category->category_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-md-3 col-form-label">Blog Content</label>
                                 <div class="col-md-9">

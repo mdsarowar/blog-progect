@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Categori;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function addBlog(){
         return view('admin.blog.add',[
-            'categories'=>Blog::where('status',1)->get(),
+            'categories'=>Categori::where('status',1)->get(),
         ]);
     }
 
@@ -35,10 +36,9 @@ class BlogController extends Controller
     }
 
     public function editBlog($id){
-
-
         return view('admin.blog.edit',[
-            'blog'=>Blog::findOrFail($id)
+            'blog'=>Blog::findOrFail($id),
+            'categories'=>Categori::where('status',1)->get(),
         ]);
 
     }

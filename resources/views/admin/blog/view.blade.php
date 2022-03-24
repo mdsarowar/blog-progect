@@ -32,6 +32,7 @@
                             <thead>
                             <tr>
                                 <th scope="col" style="width: 100px">#</th>
+                                <th scope="col">name</th>
                                 <th scope="col">Blog Title</th>
                                 <th scope="col">Blog Image</th>
                                 <th scope="col">Blog Content</th>
@@ -43,6 +44,7 @@
                             @foreach($blogs as $blog)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
+                                    <td>{{$blog->category->category_name}}</td>
                                     <td><span class="badge badge-primary">{{$blog->blog_title}}</span></td>
                                     <td>
                                         <div class="team">
@@ -55,9 +57,15 @@
                                     <td>{!! $blog->blog_content !!}</td>
                                     <td>{{$blog->status}}</td>
                                     <td>
-                                        <a class="btn btn-{{$blog->status==0 ? 'primary':'secondary'}}" href="{{route('blog_status',['id'=> $blog->id])}}">{{$blog->status==0 ? 'unpublished':'published'}}</a>
-                                        <a class="btn btn-info" href="{{route('edit_blog',['id'=>$blog->id])}}">Edit</a>
-                                        <a class="btn btn-danger" href="{{route('delete_blog',['id'=>$blog->id])}}">del</a>
+                                        <a class="btn btn-{{$blog->status==0 ? 'primary':'secondary'}} btn-sm" href="{{route('blog_status',['id'=> $blog->id])}}">
+                                            <i class="fa-solid fa-arrow-{{$blog->status== 1? 'down':'up' }}"></i>
+                                        </a>
+                                        <a class="btn btn-info btn-sm" href="{{route('edit_blog',['id'=>$blog->id])}}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="btn btn-danger  btn-sm" href="{{route('delete_blog',['id'=>$blog->id])}}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
 
                                         {{--                                <div class="dropdown">--}}
                                         {{--                                    <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">--}}

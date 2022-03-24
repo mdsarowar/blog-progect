@@ -20,7 +20,7 @@ class Customhelper
         return $directory.self::$imageName;
     }
 
-    public static function updateimage($image,$fileimage,$directory){
+    public static function updateimage($image,$fileimage=null,$directory){
 //        self::$image=$request->file('blog_image');
         if (self::$image)
         {
