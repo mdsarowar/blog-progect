@@ -19,6 +19,12 @@ use App\Http\Controllers\Front\PageController;
 */
 
 Route::get('/',[PageController::class,'home'])->name('home');
+Route::get('/blog_page',[PageController::class,'blogPage'])->name('blog_page');
+Route::get('/blog_view/{id}',[PageController::class,'blogView'])->name('blog_view');
+Route::get('/all_service',[PageController::class,'allService'])->name('all_service');
+Route::get('/service_details/{id}',[PageController::class,'serviceDetails'])->name('service_details');
+Route::get('/contact_view',[PageController::class,'contactView'])->name('contact_view');
+Route::post('/message_submit',[PageController::class,'messageSubmit'])->name('message_submit');
 
 
 //Route::get('/', function () {
