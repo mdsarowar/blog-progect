@@ -145,47 +145,49 @@
                     <h2 class="section-title section-title-border">Service We Provide</h2>
                 </div>
                 <!-- service item -->
-                <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                    <div class="card text-center">
-                        <div class="card-img-wrapper overlay-rounded-top">
-                            <img class="card-img-top rounded-0" src="{{asset('/')}}front/images/service/service-1.jpg" alt="service-image">
-                        </div>
-                        <div class="card-body p-0">
-                            <h4 class="card-title pt-3">Business Consulting</h4>
-                            <p class="card-text mx-2 mb-0">Lorem ipsum dolor amet consecte tur adipisicing elit sed done
-                                eius mod tempor enim ad minim veniam quis nostrud.</p>
-                            <a href="service-single.html" class="btn btn-secondary translateY-25">Read More</a>
+                @foreach($services as $service)
+                    <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
+                        <div class="card text-center">
+                            <div class="card-img-wrapper overlay-rounded-top">
+                                <img class="card-img-top rounded-0" src="{{asset($service->service_image)}}" style="height: 200px" alt="service-image">
+                            </div>
+                            <div class="card-body p-0">
+                                <h4 class="card-title pt-3">{{$service->service_title}}</h4>
+                                <p class="card-text mx-2 mb-0">{!! $service->service_content !!}</p>
+                                <a href="{{route('service_details',['id'=>$service->id])}}" class="btn btn-secondary translateY-25">Read More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
                 <!-- service item -->
-                <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                    <div class="card text-center">
-                        <div class="card-img-wrapper overlay-rounded-top">
-                            <img class="card-img-top rounded-0" src="{{asset('/')}}front/images/service/service-2.jpg" alt="service-image">
-                        </div>
-                        <div class="card-body p-0">
-                            <h4 class="card-title pt-3">Valuable Idea</h4>
-                            <p class="card-text mx-2 mb-0">Lorem ipsum dolor amet consecte tur adipisicing elit sed done
-                                eius mod tempor enim ad minim veniam quis nostrud.</p>
-                            <a href="service-single.html" class="btn btn-secondary translateY-25">Read More</a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">--}}
+{{--                    <div class="card text-center">--}}
+{{--                        <div class="card-img-wrapper overlay-rounded-top">--}}
+{{--                            <img class="card-img-top rounded-0" src="{{asset('/')}}front/images/service/service-2.jpg" alt="service-image">--}}
+{{--                        </div>--}}
+{{--                        <div class="card-body p-0">--}}
+{{--                            <h4 class="card-title pt-3">Valuable Idea</h4>--}}
+{{--                            <p class="card-text mx-2 mb-0">Lorem ipsum dolor amet consecte tur adipisicing elit sed done--}}
+{{--                                eius mod tempor enim ad minim veniam quis nostrud.</p>--}}
+{{--                            <a href="service-single.html" class="btn btn-secondary translateY-25">Read More</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <!-- service item -->
-                <div class="col-lg-4 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-img-wrapper overlay-rounded-top">
-                            <img class="card-img-top rounded-0" src="{{asset('/')}}front/images/service/service-3.jpg" alt="service-image">
-                        </div>
-                        <div class="card-body p-0">
-                            <h4 class="card-title pt-3">Market Strategy</h4>
-                            <p class="card-text mx-2 mb-0">Lorem ipsum dolor amet consecte tur adipisicing elit sed done
-                                eius mod tempor enim ad minim veniam quis nostrud.</p>
-                            <a href="service-single.html" class="btn btn-secondary translateY-25">Read More</a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-lg-4 col-sm-6">--}}
+{{--                    <div class="card text-center">--}}
+{{--                        <div class="card-img-wrapper overlay-rounded-top">--}}
+{{--                            <img class="card-img-top rounded-0" src="{{asset('/')}}front/images/service/service-3.jpg" alt="service-image">--}}
+{{--                        </div>--}}
+{{--                        <div class="card-body p-0">--}}
+{{--                            <h4 class="card-title pt-3">Market Strategy</h4>--}}
+{{--                            <p class="card-text mx-2 mb-0">Lorem ipsum dolor amet consecte tur adipisicing elit sed done--}}
+{{--                                eius mod tempor enim ad minim veniam quis nostrud.</p>--}}
+{{--                            <a href="service-single.html" class="btn btn-secondary translateY-25">Read More</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>
@@ -379,68 +381,73 @@
                     <h2 class="section-title section-title-border">Latest Article</h2>
                 </div>
                 <!-- blog item -->
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <div class="card">
-                        <img class="card-img-top" src="{{asset('/')}}front/images/blog/blog-1.jpg" alt="news-thumbnail">
-                        <div class="card-body p-0">
-                            <div class="p-3 border-bottom">
-                                <h6 class="text-primary">Dec 20, 2017</h6>
-                                <a href="blog-single.html" class="h4 card-title font-primary text-dark">Cras sed elit sit
-                                    amet.</a>
-                                <p class="card-text">Lorem ipsum dolor amet consectur adipsicing elit sed eiusm tempor
-                                    incididunt labore dolore. magna aliqua enim minim.</p>
+                @foreach($blogs as $blog)
+                    <a href="{{route('blog_view',['id'=>$blog->id])}}">
+                        <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
+                            <div class="card">
+                                <img class="card-img-top" src="{{asset($blog->blog_image)}}" style="height: 200px" alt="news-thumbnail">
+                                <div class="card-body p-0">
+                                    <div class="p-3 border-bottom">
+                                        {{--                                    <h6 class="text-primary">Dec 20, 2017</h6>--}}
+                                        <h6 class="text-primary">{{$blog->created_at->format('M, d, Y')}}</h6>
+                                        <a href="#" class="h4 card-title font-primary text-dark">{{$blog->blog_title}}</a>
+                                        <p class="card-text">{!! $blog->blog_content !!}</p>
+                                    </div>
+                                    <a href="#" class="card-link d-inline-block text-color p-2"><i
+                                            class="text-primary mr-2 ti-user"></i>Admin</a>
+                                    <a href="#" class="card-link d-inline-block text-color p-2"><i
+                                            class="text-primary mr-2 ti-comments-smiley"></i>30 Comments</a>
+                                    <a href="#" class="card-link d-inline-block text-color p-2 px-3 float-right border-left"><i
+                                            class="text-primary ti-share"></i></a>
+                                </div>
                             </div>
-                            <a href="#" class="card-link d-inline-block text-color p-2"><i
-                                    class="text-primary mr-2 ti-user"></i>Admin</a>
-                            <a href="#" class="card-link d-inline-block text-color p-2"><i
-                                    class="text-primary mr-2 ti-comments-smiley"></i>30 Comments</a>
-                            <a href="#" class="card-link d-inline-block text-color p-2 px-3 float-right border-left"><i
-                                    class="text-primary ti-share"></i></a>
                         </div>
-                    </div>
-                </div>
+                    </a>
+
+                @endforeach
+
                 <!-- blog item -->
-                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">
-                    <div class="card">
-                        <img class="card-img-top" src="{{asset('/')}}front/images/blog/blog-2.jpg" alt="news-thumbnail">
-                        <div class="card-body p-0">
-                            <div class="p-3 border-bottom">
-                                <h6 class="text-primary">Dec 20, 2017</h6>
-                                <a href="blog-single.html" class="h4 card-title font-primary text-dark">Cras sed elit sit
-                                    amet.</a>
-                                <p class="card-text">Lorem ipsum dolor amet consectur adipsicing elit sed eiusm tempor
-                                    incididunt labore dolore. magna aliqua enim minim.</p>
-                            </div>
-                            <a href="#" class="card-link d-inline-block text-color p-2"><i
-                                    class="text-primary mr-2 ti-user"></i>Admin</a>
-                            <a href="#" class="card-link d-inline-block text-color p-2"><i
-                                    class="text-primary mr-2 ti-comments-smiley"></i>30 Comments</a>
-                            <a href="#" class="card-link d-inline-block text-color p-2 px-3 float-right border-left"><i
-                                    class="text-primary ti-share"></i></a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-lg-4 col-sm-6 mb-4 mb-lg-0">--}}
+{{--                    <div class="card">--}}
+{{--                        <img class="card-img-top" src="{{asset('/')}}front/images/blog/blog-2.jpg" alt="news-thumbnail">--}}
+{{--                        <div class="card-body p-0">--}}
+{{--                            <div class="p-3 border-bottom">--}}
+{{--                                <h6 class="text-primary">Dec 20, 2017</h6>--}}
+{{--                                <a href="blog-single.html" class="h4 card-title font-primary text-dark">Cras sed elit sit--}}
+{{--                                    amet.</a>--}}
+{{--                                <p class="card-text">Lorem ipsum dolor amet consectur adipsicing elit sed eiusm tempor--}}
+{{--                                    incididunt labore dolore. magna aliqua enim minim.</p>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="card-link d-inline-block text-color p-2"><i--}}
+{{--                                    class="text-primary mr-2 ti-user"></i>Admin</a>--}}
+{{--                            <a href="#" class="card-link d-inline-block text-color p-2"><i--}}
+{{--                                    class="text-primary mr-2 ti-comments-smiley"></i>30 Comments</a>--}}
+{{--                            <a href="#" class="card-link d-inline-block text-color p-2 px-3 float-right border-left"><i--}}
+{{--                                    class="text-primary ti-share"></i></a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <!-- blog item -->
-                <div class="col-lg-4 col-sm-6">
-                    <div class="card">
-                        <img class="card-img-top" src="{{asset('/')}}front/images/blog/blog-3.jpg" alt="news-thumbnail">
-                        <div class="card-body p-0">
-                            <div class="p-3 border-bottom">
-                                <h6 class="text-primary">Dec 20, 2017</h6>
-                                <a href="blog-single.html" class="h4 card-title font-primary text-dark">Cras sed elit sit
-                                    amet.</a>
-                                <p class="card-text">Lorem ipsum dolor amet consectur adipsicing elit sed eiusm tempor
-                                    incididunt labore dolore. magna aliqua enim minim.</p>
-                            </div>
-                            <a href="#" class="card-link d-inline-block text-color p-2"><i
-                                    class="text-primary mr-2 ti-user"></i>Admin</a>
-                            <a href="#" class="card-link d-inline-block text-color p-2"><i
-                                    class="text-primary mr-2 ti-comments-smiley"></i>30 Comments</a>
-                            <a href="#" class="card-link d-inline-block text-color p-2 px-3 float-right border-left"><i
-                                    class="text-primary ti-share"></i></a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-lg-4 col-sm-6">--}}
+{{--                    <div class="card">--}}
+{{--                        <img class="card-img-top" src="{{asset('/')}}front/images/blog/blog-3.jpg" alt="news-thumbnail">--}}
+{{--                        <div class="card-body p-0">--}}
+{{--                            <div class="p-3 border-bottom">--}}
+{{--                                <h6 class="text-primary">Dec 20, 2017</h6>--}}
+{{--                                <a href="blog-single.html" class="h4 card-title font-primary text-dark">Cras sed elit sit--}}
+{{--                                    amet.</a>--}}
+{{--                                <p class="card-text">Lorem ipsum dolor amet consectur adipsicing elit sed eiusm tempor--}}
+{{--                                    incididunt labore dolore. magna aliqua enim minim.</p>--}}
+{{--                            </div>--}}
+{{--                            <a href="#" class="card-link d-inline-block text-color p-2"><i--}}
+{{--                                    class="text-primary mr-2 ti-user"></i>Admin</a>--}}
+{{--                            <a href="#" class="card-link d-inline-block text-color p-2"><i--}}
+{{--                                    class="text-primary mr-2 ti-comments-smiley"></i>30 Comments</a>--}}
+{{--                            <a href="#" class="card-link d-inline-block text-color p-2 px-3 float-right border-left"><i--}}
+{{--                                    class="text-primary ti-share"></i></a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </section>

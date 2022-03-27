@@ -34,6 +34,17 @@
 {{--                        </div>--}}
 {{--                    </li>--}}
                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button"  aria-haspopup="true"
+                           aria-expanded="false">
+                            Blog Category
+                        </a>
+                        <div class="dropdown-menu" >
+                            @foreach($blogCategories as $blogcategory)
+                            <a class="dropdown-item" href="service.html">{{$blogcategory->category_name}}</a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="{{route('all_service')}}" role="button"  aria-haspopup="true"
                            aria-expanded="false">
                             Service
@@ -73,24 +84,16 @@
 {{--                            <a class="dropdown-item" href="blog-single.html">Blog Single</a>--}}
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            Elements
-                        </a>
-                        <div class="dropdown-menu" >
-                            <a class="dropdown-item" href="components/buttons.html">Buttons</a>
-                            <a class="dropdown-item" href="components/icons.html">Icons</a>
-                            <a class="dropdown-item" href="components/typography.html">Typography</a>
-                            <a class="dropdown-item" href="components/accordions.html">Accordions</a>
-                            <a class="dropdown-item" href="components/blog-contents.html">Blog Contents</a>
-                            <a class="dropdown-item" href="components/service-contents.html">Service Contents</a>
-                            <a class="dropdown-item" href="components/team-contents.html">Team Contents</a>
-                        </div>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('contact_view')}}">Contact</a>
                     </li>
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('login')}}">login</a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item">--}}
+{{--                        <a class="nav-link" href="{{route('registration')}}">Register</a>--}}
+{{--                    </li>--}}
                 </ul>
             </div>
         </nav>
