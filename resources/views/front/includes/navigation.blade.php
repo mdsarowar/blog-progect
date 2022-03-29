@@ -40,7 +40,7 @@
                         </a>
                         <div class="dropdown-menu" >
                             @foreach($blogCategories as $blogcategory)
-                            <a class="dropdown-item" href="service.html">{{$blogcategory->category_name}}</a>
+                            <a class="dropdown-item" href="">{{$blogcategory->category_name}}</a>
                             @endforeach
                         </div>
                     </li>
